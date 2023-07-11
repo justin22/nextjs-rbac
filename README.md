@@ -10,6 +10,8 @@ Main functionalities are as follows,
 2. Setup Roles & Permissions for teams
 3. Assign roles to users
 
+![RBAC Table structure](https://raw.githubusercontent.com/justin22/nextjs-rbac/main/database-schema.png)
+
 ## Dependencies
 1. prisma
 2. next-auth
