@@ -2,7 +2,7 @@ This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next
 
 ## Introduction
 
-Next.js - RBAC (Role Based Access Control) helps to setup a application, with roles and permissions. This boilerplate ships with RBAC database schema, utility functions for RBAC and very minimal components and styles.
+Next.js - RBAC (Role Based Access Control) helps to setup a application, with roles and permissions. This boilerplate ships with RBAC database schema, utility functions for RBAC and very minimal or no components and styles.
 
 Main functionalities are as follows,
 
@@ -30,7 +30,7 @@ Following is an example for Postgres. Once you have a Database setup, add `DATAB
 DATABASE_URL"postgresql://mydbuser:123@localhost:5432/mydb?schema=public"
 ```
 
-#### Run migrations
+### Run migrations
 
 Once database setup is done, you can run the migration using prisma command. 
 ```
@@ -48,3 +48,8 @@ pnpm dev
 ```
 
 Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+
+
+## Application flow. 
+
+![RBAC Table structure](https://raw.githubusercontent.com/justin22/nextjs-rbac/main/application-flow.png)
