@@ -53,3 +53,10 @@ Open [http://localhost:3000](http://localhost:3000) with your browser to see the
 ## Application flow. 
 
 ![RBAC Table structure](https://raw.githubusercontent.com/justin22/nextjs-rbac/main/application-flow.png)
+
+## Todo
+- [x] Integrate next-auth
+- [x]  Setup teams, roles and permissions
+- [ ]  Ability to invite users, accept/decline invites
+- [ ]  Switch teams
+- [ ]  Unit tests
