@@ -57,6 +57,7 @@ Open [http://localhost:3000](http://localhost:3000) with your browser to see the
 ## Todo
 - [x] Integrate next-auth
 - [x]  Setup teams, roles and permissions
+- [ ]  Create guard (something like `can(user, 'PERMISSION_NAME')`)
 - [ ]  Ability to invite users, accept/decline invites
 - [ ]  Switch teams
 - [ ]  Unit tests
