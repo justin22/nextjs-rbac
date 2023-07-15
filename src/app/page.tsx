@@ -1,12 +1,13 @@
-import { LoginButton, LogoutButton, ProfileButton, RegisterButton } from "commons/components/auth/auth-buttons";
+import { LoginButton, ProfileButton } from "commons/components/auth/auth-buttons";
 export default async function Home() {
 
   return (
     <main>
+      <h1>
+        Welcome
+      </h1>
       <div>
         <LoginButton />
-        <RegisterButton />
-        <LogoutButton />
         <ProfileButton />
       </div>
     </main>

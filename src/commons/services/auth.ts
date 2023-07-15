@@ -10,6 +10,11 @@ export async function handleUserSetup(email: string) {
       email
     },
     include: {
+      role: {
+        select: {
+          name: true,
+        }
+      },
       team: {
         select: {
           id: true,
@@ -33,6 +38,10 @@ export async function handleUserSetup(email: string) {
     }
     await changeUserRole(user.id, role.id);
     user.roleId = role.id;
+    user.role = {
+      ...user.role,
+      name: defaultRoles.SUPER_ADMIN.name
+    };
   }
   const rolePermissions = await prismaClient.rolePermission.findMany({
     where: {
@@ -47,6 +56,7 @@ export async function handleUserSetup(email: string) {
   return {
     permissions,
     teamId: user.currentTeamId!,
-    roleId: user.roleId!
+    roleId: user.roleId!,
+    role: user.role?.name
   };
 }
