@@ -1,4 +1,4 @@
-import type { NextAuthOptions, Session } from "next-auth";
+import type { NextAuthOptions } from "next-auth";
 import GoogleProvider from "next-auth/providers/google";
 import { PrismaAdapter } from "@auth/prisma-adapter";
 import prismaClient from "./prisma";
@@ -17,12 +17,11 @@ export const authOptions: NextAuthOptions = {
     // ...add more providers here
   ],
   callbacks: {
-    async jwt({ token, account, trigger, user }) {
+    async jwt({ token, account, user }) {
       let userData = null;
       if (user?.email) {
         userData = await handleUserSetup(user.email)
       }
-      console.log(`user -- ${JSON.stringify(user)}`)
       if (account) {
         token.accessToken = account.access_token
       }
@@ -31,7 +30,8 @@ export const authOptions: NextAuthOptions = {
           ...user,
           permissions: userData?.permissions,
           teamId: userData?.teamId,
-          roleId: userData?.roleId
+          roleId: userData?.roleId,
+          roleName: userData?.role
         }
       }
       return token
@@ -42,7 +42,8 @@ export const authOptions: NextAuthOptions = {
         ...session.user,
         permissions: token.user?.permissions,
         teamId: token.user?.teamId,
-        roleId: token.user?.roleId
+        roleId: token.user?.roleId,
+        roleName: token.user?.roleName
       };
       return session
     },
