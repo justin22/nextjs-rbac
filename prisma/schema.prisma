@@ -46,15 +46,13 @@ model User {
   email         String?   @unique
   emailVerified DateTime? @map("email_verified")
   image         String?
-  roleId        Int?      @map("role_id")
   currentTeamId Int?      @map("current_team_id")
   createdAt     DateTime  @default(now()) @map("created_at")
   accounts      Account[]
   sessions      Session[]
 
-  role     Role?      @relation(fields: [roleId], references: [id], onDelete: SetNull)
-  team     Team[]
-  teamUser TeamUser[]
+  teams     Team[]
+  teamUsers TeamUser[]
 
   @@map("users")
 }
@@ -75,12 +73,11 @@ model Team {
   ownerId   String?  @map("owner_id")
   createdAt DateTime @default(now()) @map("created_at")
 
-  owner          User?            @relation(fields: [ownerId], references: [id], onDelete: SetNull)
-  teamUser       TeamUser[]
-  roleId         Int?
-  role           Role[]
-  permission     Permission[]
-  rolePermission RolePermission[]
+  owner           User?            @relation(fields: [ownerId], references: [id], onDelete: SetNull)
+  teamUsers       TeamUser[]
+  roles           Role[]
+  permissions     Permission[]
+  rolePermissions RolePermission[]
 
   @@map("teams")
 }
@@ -89,10 +86,12 @@ model TeamUser {
   id        Int      @id @default(autoincrement())
   teamId    Int      @map("team_id")
   userId    String   @map("user_id")
+  roleId    Int      @map("role_id")
   createdAt DateTime @default(now()) @map("created_at")
 
   team Team @relation(fields: [teamId], references: [id], onDelete: Cascade)
   user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+  role Role @relation(fields: [roleId], references: [id], onDelete: NoAction)
 
   @@map("team_users")
 }
@@ -105,9 +104,9 @@ model Role {
   createdAt   DateTime @default(now()) @map("created_at")
 
   rolePermissions RolePermission[]
-  User            User[]
 
-  team Team @relation(fields: [teamId], references: [id], onDelete: Cascade)
+  team     Team       @relation(fields: [teamId], references: [id], onDelete: Cascade)
+  TeamUser TeamUser[]
 
   @@map("roles")
 }

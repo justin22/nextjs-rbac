@@ -10,14 +10,3 @@ export async function changeUserCurrentTeam(userId: string, teamId: number) {
     }
   });
 }
-
-export async function changeUserRole(userId: string, roleId: number) {
-  return prismaClient.user.update({
-    where: {
-      id: userId
-    },
-    data: {
-      roleId
-    }
-  });
-}

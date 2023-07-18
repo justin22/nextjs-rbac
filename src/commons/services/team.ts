@@ -43,11 +43,12 @@ export async function createTeam(user: User) {
   };
 }
 
-export async function addUserToTeam(userId: string, teamId: number) {
+export async function addUserToTeam(userId: string, teamId: number, roleId: number) {
   return prismaClient.teamUser.create({
     data: {
       userId,
-      teamId
+      teamId,
+      roleId
     }
   });
 }

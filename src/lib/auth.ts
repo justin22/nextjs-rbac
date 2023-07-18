@@ -29,9 +29,9 @@ export const authOptions: NextAuthOptions = {
         token.user = {
           ...user,
           permissions: userData?.permissions,
-          teamId: userData?.teamId,
-          roleId: userData?.roleId,
-          roleName: userData?.role
+          role: userData?.role,
+          currentTeamId: userData?.currentTeamId,
+          teams: userData?.teams
         }
       }
       return token
@@ -41,9 +41,9 @@ export const authOptions: NextAuthOptions = {
       session.user = {
         ...session.user,
         permissions: token.user?.permissions,
-        teamId: token.user?.teamId,
-        roleId: token.user?.roleId,
-        roleName: token.user?.roleName
+        role: token.user?.role,
+        currentTeamId: token.user?.currentTeamId,
+        teams: token.user?.teams
       };
       return session
     },
